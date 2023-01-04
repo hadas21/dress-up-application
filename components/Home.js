@@ -1,31 +1,44 @@
-import {Text, View, StyleSheet, Button} from 'react-native';
+import React, {useEffect} from 'react';
+import {Text, View, StyleSheet, Button, FlatList} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {getClothes} from '../assets/redux/actions';
 
 const completeSets = 1;
 const itemsChosen = 3;
 const itemsToChoose = 3;
 const isDressComplete = itemsChosen === itemsToChoose;
-export default HomeScreen = () => (
-  <>
-    <Text style={styles.titleText}>Application</Text>
+export default HomeScreen = () => {
+  const {clothes} = useSelector(state => state.userReducer);
+  const dispatch = useDispatch();
 
-    <View style={styles.view}>
-      <Text style={styles.bodyText} category="h1">
-        Sets completed: {completeSets}
-      </Text>
-      <Text style={styles.bodyText} category="h1">
-        Dress stattus: {itemsChosen} / {itemsToChoose}
-      </Text>
-      {isDressComplete && (
-        <Button
-          title="Done"
-          style={styles.button}
-          color="#f194ff"
-          onPress={() => console.log('Button with adjusted color pressed')}
-        />
-      )}
-    </View>
-  </>
-);
+  useEffect(() => {
+    dispatch(getClothes());
+    console.log(clothes.results);
+  }, []);
+
+  return (
+    <>
+      <Text style={styles.titleText}>Application</Text>
+
+      <View style={styles.view}>
+        <Text style={styles.bodyText} category="h1">
+          Sets completed: {completeSets}
+        </Text>
+        <Text style={styles.bodyText} category="h1">
+          Dress stattus: {itemsChosen} / {itemsToChoose}
+        </Text>
+        {isDressComplete && (
+          <Button
+            title="Done"
+            style={styles.button}
+            color="#f194ff"
+            onPress={() => console.log('Button with adjusted color pressed')}
+          />
+        )}
+      </View>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   view: {
