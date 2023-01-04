@@ -12,6 +12,8 @@ import com.facebook.soloader.SoLoader;
 import com.dressupproject.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import com.swmansion.rnscreens.RNScreensPackage;
+
 
 public class MainApplication extends Application implements ReactApplication {
 
