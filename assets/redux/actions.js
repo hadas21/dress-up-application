@@ -1,8 +1,6 @@
 import clothes from '../utils/clothesEnum';
 
-export const SHIRTS = 'SHIRTS';
-export const PANTS = 'PANTS';
-export const SHOES = 'SHOES';
+export const GET_CLOTHES = 'GET_CLOTHES';
 export const SET_SELECTED_OUTFIT = 'SET_SELECTED_OUTFIT';
 
 const API_URL =
@@ -21,22 +19,18 @@ export const getClothes = () => {
       const json = await result.json();
       if (json) {
         const resultArr = json.results;
+        const filteredItems = resultArr.reduce((prev, cur) => {
+          if (prev[cur.type]) {
+            prev[cur.type].push(cur);
+          } else {
+            prev[cur.type] = [cur];
+          }
+          return prev;
+        }, {});
 
-        const shirtsArr = resultArr.filter(r => r.type === 'shirt');
-        const pantsArr = resultArr.filter(r => r.type === clothes.pants);
-        const shoesArr = resultArr.filter(r => r.type === clothes.shoes);
-
         dispatch({
-          type: SHIRTS,
-          payload: shirtsArr,
-        });
-        dispatch({
-          type: PANTS,
-          payload: pantsArr,
-        });
-        dispatch({
-          type: SHOES,
-          payload: shoesArr,
+          type: GET_CLOTHES,
+          payload: filteredItems,
         });
       } else {
         console.log('Unable to fetch!');

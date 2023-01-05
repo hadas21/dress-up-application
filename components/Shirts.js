@@ -1,18 +1,8 @@
 import {Text, View} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {getClothes} from '../assets/redux/actions';
 import DisplayItems from './DisplayItems';
 
-import React, {useEffect} from 'react';
-
-export default Shirst = () => {
-  const {shirts} = useSelector(state => state.userReducer);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getClothes());
-    console.log('??????????????', shirts);
-  }, []);
+export default Shirst = ({route}) => {
+  const shirts = route.params.shirts;
 
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
