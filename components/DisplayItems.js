@@ -49,9 +49,16 @@ export default DisplayItems = props => {
     ));
   };
 
-  const handlePress = () => {
+  const handleSave = () => {
     dispatch(setSelectedOutfit(selectedItem));
+    setModalVisible(false);
+    setShowSizes('');
     navigation.navigate('Home');
+  };
+
+  const handleCancle = () => {
+    setModalVisible(false);
+    setShowSizes('');
   };
 
   const modal = (
@@ -71,12 +78,12 @@ export default DisplayItems = props => {
           </Text>
           <Pressable
             style={[styles.button, styles.buttonClose]}
-            onPress={() => setModalVisible(!modalVisible)}>
+            onPress={handleCancle}>
             <Text style={styles.textStyle}>No</Text>
           </Pressable>
           <Pressable
             style={[styles.button, styles.buttonClose]}
-            onPress={handlePress}>
+            onPress={handleSave}>
             <Text style={styles.textStyle}>Yes</Text>
           </Pressable>
         </View>
