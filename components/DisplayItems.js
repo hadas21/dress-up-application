@@ -43,7 +43,7 @@ export default DisplayItems = props => {
         onPress={() => {
           setSelectedItem({...selectedItem, size: size});
           setModalVisible(true);
-          console.log('<<<<<<<<<<<<<<', selectedItem);
+          //   console.log('<<<<<<<<<<<<<<', selectedItem);
         }}
       />
     ));

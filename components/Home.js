@@ -1,20 +1,19 @@
-import React, {useEffect} from 'react';
 import {Text, View, StyleSheet, Button, FlatList} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {getClothes} from '../assets/redux/actions';
+// import {useSelector, useDispatch} from 'react-redux';
+// import {getClothes} from '../assets/redux/actions';
 
 const completeSets = 1;
 const itemsChosen = 3;
 const itemsToChoose = 3;
 const isDressComplete = itemsChosen === itemsToChoose;
 export default HomeScreen = () => {
-  const {clothes} = useSelector(state => state.userReducer);
-  const dispatch = useDispatch();
+  // const {clothes} = useSelector(state => state.userReducer);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getClothes());
-    console.log(clothes.results);
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getClothes());
+  //   console.log(clothes.results);
+  // }, []);
 
   return (
     <>
