@@ -2,6 +2,7 @@ import clothes from '../utils/clothesEnum';
 
 export const GET_CLOTHES = 'GET_CLOTHES';
 export const SET_SELECTED_OUTFIT = 'SET_SELECTED_OUTFIT';
+export const SET_COMPLETE_OUTFITS = 'SET_COMPLETE_OUTFITS';
 
 const API_URL =
   'http://www.mocky.io/v2/5e3940013200005e00ddf87e?mocky-delay=600ms';
@@ -47,6 +48,18 @@ export const setSelectedOutfit = selectedItem => dispatch => {
     dispatch({
       type: SET_SELECTED_OUTFIT,
       payload: selectedItem,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const setCompleteoutfits = completeOutfit => dispatch => {
+  try {
+    console.log('action!!!!!!!!!', completeOutfit);
+    dispatch({
+      type: SET_COMPLETE_OUTFITS,
+      payload: completeOutfit,
     });
   } catch (error) {
     console.log(error);

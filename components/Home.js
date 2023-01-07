@@ -1,9 +1,11 @@
 import {Text, View, StyleSheet, Button, FlatList} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import React, {useEffect, useState} from 'react';
+import {setCompleteSets} from '../assets/redux/actions';
 
 export default HomeScreen = () => {
   const {clothes, outfit} = useSelector(state => state.userReducer);
+  const dispatch = useDispatch();
 
   const [itemsToChoose, setItemsToChoose] = useState();
   const [itemsChosen, setItemsChosen] = useState(0);
@@ -24,6 +26,7 @@ export default HomeScreen = () => {
   }, [itemsChosen]);
   useEffect(() => {
     setItemsChosen(0);
+    dispatch(setCompleteSets(outfit));
   }, [completedSets]);
 
   return (
