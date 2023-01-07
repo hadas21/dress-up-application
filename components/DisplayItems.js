@@ -22,20 +22,20 @@ export default DisplayItems = props => {
   const [showSizes, setShowSizes] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
-  const renderColors = (colors, id, type) => {
+  const renderColors = (colors, id, type, name) => {
     return colors.map((color, i) => (
       <TouchableOpacity
         key={i}
         style={{width: 30, height: 30, backgroundColor: color, margin: 5}}
         onPress={() => {
-          setSelectedItem({type: type, id: id, color: color});
+          setSelectedItem({type: type, id: id, color: color, name: name});
           setShowSizes(id);
         }}
       />
     ));
   };
 
-  const renderSizes = (sizes, id) => {
+  const renderSizes = sizes => {
     return sizes.map(size => (
       <Button
         key={size}
@@ -43,7 +43,6 @@ export default DisplayItems = props => {
         onPress={() => {
           setSelectedItem({...selectedItem, size: size});
           setModalVisible(true);
-          //   console.log('<<<<<<<<<<<<<<', selectedItem);
         }}
       />
     ));
@@ -73,19 +72,21 @@ export default DisplayItems = props => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>
-            Are ou sure you want to select this item?{'\n'}
-            {`name: ,color: ${selectedItem.color},size: ${selectedItem.size}`}
+            Are ou sure you want to select this item?{'\n\n'}
+            {`name: ${selectedItem.name} \n,color: ${selectedItem.color}\n,size: ${selectedItem.size}`}
           </Text>
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={handleCancle}>
-            <Text style={styles.textStyle}>No</Text>
-          </Pressable>
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={handleSave}>
-            <Text style={styles.textStyle}>Yes</Text>
-          </Pressable>
+          <View style={styles.buttonWrapper}>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={handleCancle}>
+              <Text style={styles.textStyle}>No</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={handleSave}>
+              <Text style={styles.textStyle}>Yes</Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </Modal>
@@ -102,9 +103,14 @@ export default DisplayItems = props => {
             <View style={styles.item}>
               <Text style={styles.title}>{item.name}</Text>
               <Text>{item.brand}</Text>
-              {renderColors(item.colors, item.id, item.type)}
-              {/* {showSizes && <Text>Selecte a size: </Text>} */}
-              {showSizes === item.id && renderSizes(item.sizes, item.id)}
+              <Text>Select a color:</Text>
+              <View style={styles.buttonWrapper}>
+                {renderColors(item.colors, item.id, item.type, item.name)}
+              </View>
+              <Text>Select a size:</Text>
+              <View style={styles.buttonWrapper}>
+                {showSizes === item.id && renderSizes(item.sizes, item.id)}
+              </View>
             </View>
           )}
           keyExtractor={(item, index) => index.toString()}
@@ -153,10 +159,14 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  buttonWrapper: {
+    flexDirection: 'row',
+  },
   button: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    marginHorizontal: 8,
   },
   buttonOpen: {
     backgroundColor: '#F194FF',
