@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {useSelector, useDispatch} from 'react-redux';
 import {getClothes} from '../assets/redux/actions';
@@ -11,32 +11,18 @@ import ShoesScreen from '../components/Shoes';
 const Drawer = createDrawerNavigator();
 
 export default SideNavigator = () => {
-  const {clothes} = useSelector(state => state.userReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const result = dispatch(getClothes());
-    console.log(result);
+    dispatch(getClothes());
   }, []);
 
   return (
     <Drawer.Navigator initialRouteName="Home">
       <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen
-        name="Shirts"
-        component={ShirtsScreen}
-        initialParams={{shirts: clothes.shirt}}
-      />
-      <Drawer.Screen
-        name="Pants"
-        component={PantsScreen}
-        initialParams={{pants: clothes.pants}}
-      />
-      <Drawer.Screen
-        name="Shoes"
-        component={ShoesScreen}
-        initialParams={{shoes: clothes.shoes}}
-      />
+      <Drawer.Screen name="Shirts" component={ShirtsScreen} />
+      <Drawer.Screen name="Pants" component={PantsScreen} />
+      <Drawer.Screen name="Shoes" component={ShoesScreen} />
     </Drawer.Navigator>
   );
 };
