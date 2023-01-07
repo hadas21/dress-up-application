@@ -1,20 +1,30 @@
 import {Text, View, StyleSheet, Button, FlatList} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {getClothes} from '../assets/redux/actions';
-import React, {useEffect} from 'react';
+import {useSelector} from 'react-redux';
+import React, {useEffect, useState} from 'react';
 
-const completeSets = 1;
-const itemsChosen = 3;
-const itemsToChoose = 3;
-const isDressComplete = itemsChosen === itemsToChoose;
 export default HomeScreen = () => {
-  // const {clothes} = useSelector(state => state.userReducer);
-  // const dispatch = useDispatch();
+  const {clothes, outfit} = useSelector(state => state.userReducer);
 
-  // useEffect(() => {
-  //   dispatch(getClothes());
-  //   // console.log(clothes.results);
-  // }, []);
+  const [itemsToChoose, setItemsToChoose] = useState();
+  const [itemsChosen, setItemsChosen] = useState(0);
+  const [completedSets, setCompletedSets] = useState(0);
+  const [isDressComplete, setIsDressComplete] = useState(false);
+
+  useEffect(() => {
+    setItemsToChoose(Object.keys(clothes).length);
+  }, [clothes]);
+  useEffect(() => {
+    setItemsChosen(Object.keys(outfit).length);
+  }, [outfit]);
+  useEffect(() => {
+    if (itemsChosen === itemsToChoose) {
+      setCompletedSets(completedSets + 1);
+      setIsDressComplete(true);
+    }
+  }, [itemsChosen]);
+  useEffect(() => {
+    setItemsChosen(0);
+  }, [completedSets]);
 
   return (
     <>
@@ -22,7 +32,7 @@ export default HomeScreen = () => {
 
       <View style={styles.view}>
         <Text style={styles.bodyText} category="h1">
-          Sets completed: {completeSets}
+          Sets completed: {completedSets}
         </Text>
         <Text style={styles.bodyText} category="h1">
           Dress stattus: {itemsChosen} / {itemsToChoose}
