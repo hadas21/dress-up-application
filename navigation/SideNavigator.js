@@ -15,8 +15,8 @@ export default SideNavigator = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getClothes());
-    console.log(clothes.results);
+    const result = dispatch(getClothes());
+    console.log(result);
   }, []);
 
   return (
