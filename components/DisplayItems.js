@@ -84,7 +84,7 @@ export default DisplayItems = props => {
     </Modal>
   );
 
-  console.log('BBBBBBBBBBBBBBB', data);
+  //   console.log('BBBBBBBBBBBBBBB', data);
 
   return (
     <>
