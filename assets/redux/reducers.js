@@ -28,6 +28,7 @@ function userReducer(state = initialState, action) {
           color: action.payload.color,
           size: action.payload.size,
           id: action.payload.id,
+          // name: action.payload.name,
         };
 
         return {
@@ -40,7 +41,7 @@ function userReducer(state = initialState, action) {
       const payload = action.payload;
       console.log('outfit payload: ', action.payload);
       if (Object.keys(payload).length === 0) {
-        return;
+        return state;
       } else {
         return {
           ...state,

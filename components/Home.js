@@ -2,15 +2,17 @@ import {Text, View, StyleSheet, Button, FlatList} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import React, {useEffect, useState} from 'react';
 import {setCompleteoutfits, setSelectedOutfit} from '../assets/redux/actions';
+import {useNavigation} from '@react-navigation/native';
 
 export default HomeScreen = () => {
   const {clothes, outfit} = useSelector(state => state.userReducer);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const [itemsToChoose, setItemsToChoose] = useState();
   const [itemsChosen, setItemsChosen] = useState(0);
   const [completedSets, setCompletedSets] = useState(0);
-  const [isOneSetComplete, setIsOneSetComplete] = useState(false);
+  const [isOneSetComplete, setIsOneSetComplete] = useState(true);
 
   useEffect(() => {
     setItemsToChoose(Object.keys(clothes).length);
@@ -46,7 +48,7 @@ export default HomeScreen = () => {
             title="Done"
             style={styles.button}
             color="#f194ff"
-            onPress={() => console.log('Button with adjusted color pressed')}
+            onPress={() => navigation.navigate('Success')}
           />
         )}
       </View>

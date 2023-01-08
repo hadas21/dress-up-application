@@ -1,15 +1,34 @@
-import {Text, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {Image, View, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import TabelOfSelectedOutfits from './TabelOfSelectedOutfits';
 
-import DisplayItems from './DisplayItems';
+const IMG_URL = 'https://picsum.photos/200';
 
-export default Success = () => {
-  const {clothes} = useSelector(state => state.userReducer);
-  const shoes = clothes.shoes;
+export default Success = ({navigation}) => {
+  const [imagePlace, setImage] = useState('');
+
+  const loadImage = async () => {
+    try {
+      const res = await fetch(IMG_URL);
+
+      const data = res.url;
+      setImage(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    loadImage();
+  }, []);
+
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text category="h1">shoes</Text>
-      <DisplayItems data={shoes} />
+      {imagePlace ? (
+        <Image source={{uri: imagePlace}} style={{width: 200, height: 200}} />
+      ) : (
+        <></>
+      )}
+      <TabelOfSelectedOutfits />
     </View>
   );
 };
