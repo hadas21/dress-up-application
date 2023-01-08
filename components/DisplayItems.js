@@ -92,8 +92,6 @@ export default DisplayItems = props => {
     </Modal>
   );
 
-  //   console.log('BBBBBBBBBBBBBBB', data);
-
   return (
     <>
       <SafeAreaView style={styles.container}>
