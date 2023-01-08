@@ -12,7 +12,7 @@ export default HomeScreen = () => {
   const [itemsToChoose, setItemsToChoose] = useState();
   const [itemsChosen, setItemsChosen] = useState(0);
   const [completedSets, setCompletedSets] = useState(0);
-  const [isOneSetComplete, setIsOneSetComplete] = useState(true);
+  const [isOneSetComplete, setIsOneSetComplete] = useState(false);
 
   useEffect(() => {
     setItemsToChoose(Object.keys(clothes).length);
@@ -34,8 +34,6 @@ export default HomeScreen = () => {
 
   return (
     <>
-      <Text style={styles.titleText}>Application</Text>
-
       <View style={styles.view}>
         <Text style={styles.bodyText} category="h1">
           Sets completed: {completedSets}

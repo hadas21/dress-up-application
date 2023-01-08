@@ -28,7 +28,7 @@ function userReducer(state = initialState, action) {
           color: action.payload.color,
           size: action.payload.size,
           id: action.payload.id,
-          // name: action.payload.name,
+          name: action.payload.name,
         };
 
         return {

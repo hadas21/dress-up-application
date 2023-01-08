@@ -1,4 +1,4 @@
-import {Image, View, Text} from 'react-native';
+import {Image, View, Text, Button, StyleSheet} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import TabelOfSelectedOutfits from './TabelOfSelectedOutfits';
 
@@ -23,12 +23,25 @@ export default Success = ({navigation}) => {
 
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text>Congrats! checkout your outfits:</Text>
       {imagePlace ? (
         <Image source={{uri: imagePlace}} style={{width: 200, height: 200}} />
       ) : (
         <></>
       )}
+
       <TabelOfSelectedOutfits />
+      <Button
+        title={'Pick More Outfits'}
+        onPress={() => navigation.navigate('Home')}
+        style={styles.button}
+      />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    margin: 20,
+  },
+});

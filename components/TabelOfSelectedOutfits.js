@@ -30,13 +30,13 @@ export default TableOfSelectedItems = () => {
             data={tableTitle}
             style={styles.title}
             heightArr={[28, 28]}
-            textStyle={styles.text}
+            // textStyle={styles.text}
           />
           <Rows
             data={tableData}
             flexArr={[2, 1, 1]}
             style={styles.row}
-            textStyle={styles.text}
+            // textStyle={styles.text}
           />
         </TableWrapper>
       </Table>
@@ -51,10 +51,11 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingTop: 30,
     // backgroundColor: '#fff',
+    height: 50,
   },
   head: {height: 40, backgroundColor: '#f1f8ff'},
   wrapper: {flexDirection: 'row'},
-  title: {flex: 1, backgroundColor: '#f6f8fa'},
-  row: {height: 28},
+  title: {flex: 1, backgroundColor: '#f6f8fa', textAlign: 'center'},
+  row: {height: 28, textAlignVertical: 'center'},
   text: {textAlign: 'center'},
 });

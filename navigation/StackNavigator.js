@@ -20,7 +20,7 @@ const screenOptionStyle = {
 export default StackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="SideNavigator" component={SideNavigator} />
+      <Stack.Screen name="Application" component={SideNavigator} />
       <Stack.Screen name="Success" component={SuccessScreen} />
     </Stack.Navigator>
   );
