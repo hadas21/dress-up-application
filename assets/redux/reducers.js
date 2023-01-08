@@ -9,38 +9,44 @@ initialState = {clothes: {}, outfit: {}, completeOutfits: []};
 function userReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CLOTHES:
-      // console.log('????????????', action.payload);
       return {
         ...state,
         clothes: action.payload,
       };
 
     case SET_SELECTED_OUTFIT:
-      // console.log({...state});
+      const newOutfit = action.payload;
+      if (Object.keys(newOutfit).length === 0) {
+        return {
+          ...state,
+          outfit: newOutfit,
+        };
+      } else {
+        const curOutfit = {...state.outfit};
 
-      const curOutfit = {...state.outfit};
-      // const curClothes = {...state.clothes};
+        curOutfit[newOutfit.type] = {
+          color: action.payload.color,
+          size: action.payload.size,
+          id: action.payload.id,
+        };
 
-      // if (Object.keys(curOutfit).length === Object.keys(curClothes).length) {
-
-      // } else {
-      curOutfit[action.payload.type] = {
-        color: action.payload.color,
-        size: action.payload.size,
-        id: action.payload.id,
-      };
-
-      return {
-        ...state,
-        outfit: curOutfit,
-      };
+        return {
+          ...state,
+          outfit: curOutfit,
+        };
+      }
 
     case SET_COMPLETE_OUTFITS:
-      return {
-        ...state,
-        completeOutfits: action.payload,
-      };
-
+      const payload = action.payload;
+      console.log('outfit payload: ', action.payload);
+      if (Object.keys(payload).length === 0) {
+        return;
+      } else {
+        return {
+          ...state,
+          completeOutfits: [...state.completeOutfits, action.payload],
+        };
+      }
     default:
       return state;
   }

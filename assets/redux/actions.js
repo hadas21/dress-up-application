@@ -56,7 +56,6 @@ export const setSelectedOutfit = selectedItem => dispatch => {
 
 export const setCompleteoutfits = completeOutfit => dispatch => {
   try {
-    console.log('action!!!!!!!!!', completeOutfit);
     dispatch({
       type: SET_COMPLETE_OUTFITS,
       payload: completeOutfit,
