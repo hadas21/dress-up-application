@@ -44,7 +44,6 @@ export const getClothes = () => {
 
 export const setSelectedOutfit = selectedItem => dispatch => {
   try {
-    // console.log('action!!!!!!!!!', selectedItem);
     dispatch({
       type: SET_SELECTED_OUTFIT,
       payload: selectedItem,
