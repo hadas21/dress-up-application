@@ -19,9 +19,6 @@ export default TableOfSelectedItems = () => {
     settableData(clothesDetailsArr);
   }, [completeOutfits]);
 
-  console.log(tableTitle);
-  console.log(tableData);
-
   return (
     <View style={styles.container}>
       <Table borderStyle={{borderWidth: 1}}>
@@ -50,7 +47,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     paddingTop: 30,
-    // backgroundColor: '#fff',
     height: 50,
   },
   head: {height: 40, backgroundColor: '#f1f8ff'},

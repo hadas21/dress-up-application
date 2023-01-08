@@ -7,7 +7,6 @@ import HomeScreen from '../components/Home';
 import ShirtsScreen from '../components/Shirts';
 import PantsScreen from '../components/Pants';
 import ShoesScreen from '../components/Shoes';
-// import StackNavigator from './StackNavigator';
 
 const Drawer = createDrawerNavigator();
 

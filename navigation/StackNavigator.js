@@ -1,9 +1,5 @@
-// ./navigation/StackNavigator.js
-
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-
-// import HomeScreen from '../components/Home';
 import SuccessScreen from '../components/Success';
 import SideNavigator from './SideNavigator';
 
