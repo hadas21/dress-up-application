@@ -4,10 +4,9 @@ Feel free to mix and match your own outfits in my DressUp app
 Enjoy!
 ## Get Started
 1. Fork and clone repository.
-2. Install dependencies with npm install.
+2. Install dependencies.
 3. Checkout to new branch.
-4. Run npm start to run on local host.
-5. Examine endpoints via API Documentation (see directory).
+4. Run ysrn start to run on local host.
 
 ## Technology Used
 - ReactNative.js
