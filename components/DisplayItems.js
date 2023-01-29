@@ -24,9 +24,9 @@ export default DisplayItems = props => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const renderColors = (colors, id, type, name) => {
-    return colors.map((color, i) => (
+    return colors.map(color => (
       <TouchableOpacity
-        key={i}
+        key={color}
         style={[styles.colorButton, {backgroundColor: color}]}
         onPress={() => {
           setSelectedItem({type: type, id: id, color: color, name: name});
@@ -122,7 +122,6 @@ export default DisplayItems = props => {
               </View>
             </View>
           )}
-          keyExtractor={(item, index) => index.toString()}
         />
       </SafeAreaView>
       {modal}
