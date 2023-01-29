@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {useDispatch} from 'react-redux';
 import {getClothes} from '../assets/redux/actions';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 import HomeScreen from '../components/Home';
 import ShirtsScreen from '../components/Shirts';
@@ -20,9 +21,27 @@ export default SideNavigator = ({navigation}) => {
   return (
     <Drawer.Navigator initialRouteName="Home">
       <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="Shirts" component={ShirtsScreen} />
-      <Drawer.Screen name="Pants" component={PantsScreen} />
-      <Drawer.Screen name="Shoes" component={ShoesScreen} />
+      <Drawer.Screen
+        name="Shirts"
+        component={ShirtsScreen}
+        options={{
+          drawerIcon: () => <FontAwesomeIcon icon="fa-shirt" />,
+        }}
+      />
+      <Drawer.Screen
+        name="Pants"
+        component={PantsScreen}
+        options={{
+          drawerIcon: () => <FontAwesomeIcon icon="fa-shirt" />,
+        }}
+      />
+      <Drawer.Screen
+        name="Shoes"
+        component={ShoesScreen}
+        options={{
+          drawerIcon: () => <FontAwesomeIcon icon="fa-shirt" />,
+        }}
+      />
     </Drawer.Navigator>
   );
 };

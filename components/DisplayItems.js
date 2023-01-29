@@ -13,6 +13,7 @@ import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {setSelectedOutfit} from '../assets/redux/actions';
 import {useNavigation} from '@react-navigation/native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 export default DisplayItems = props => {
   const {data} = props;
@@ -26,7 +27,7 @@ export default DisplayItems = props => {
     return colors.map((color, i) => (
       <TouchableOpacity
         key={i}
-        style={{width: 30, height: 30, backgroundColor: color, margin: 5}}
+        style={[styles.colorButton, {backgroundColor: color}]}
         onPress={() => {
           setSelectedItem({type: type, id: id, color: color, name: name});
           setShowSizes(id);
@@ -36,16 +37,23 @@ export default DisplayItems = props => {
   };
 
   const renderSizes = sizes => {
-    return sizes.map(size => (
-      <Button
-        key={size}
-        title={size.toString()}
-        onPress={() => {
-          setSelectedItem({...selectedItem, size: size});
-          setModalVisible(true);
-        }}
-      />
-    ));
+    const itemSizes = (
+      <>
+        <Text>Select a size:</Text>
+        {sizes.map(size => (
+          <Button
+            key={size}
+            title={size.toString()}
+            onPress={() => {
+              setSelectedItem({...selectedItem, size: size});
+              setModalVisible(true);
+            }}
+          />
+        ))}
+      </>
+    );
+
+    return itemSizes;
   };
 
   const handleSave = () => {
@@ -99,13 +107,16 @@ export default DisplayItems = props => {
           data={data}
           renderItem={({item}) => (
             <View style={styles.item}>
-              <Text style={styles.title}>{item.name}</Text>
-              <Text>{item.brand}</Text>
+              <FontAwesomeIcon icon="fa-shirt" />
+              <View style={styles.itemName}>
+                <Text style={styles.title}>{`  ${item.name} / `}</Text>
+                <Text>{item.brand}</Text>
+              </View>
+
               <Text>Select a color:</Text>
               <View style={styles.buttonWrapper}>
                 {renderColors(item.colors, item.id, item.type, item.name)}
               </View>
-              <Text>Select a size:</Text>
               <View style={styles.buttonWrapper}>
                 {showSizes === item.id && renderSizes(item.sizes, item.id)}
               </View>
@@ -123,8 +134,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  itemName: {
+    flexDirection: 'row-reverse',
+    alignItems: 'flex-end',
+  },
   item: {
-    backgroundColor: '#f9c2ff',
     height: 300,
     width: 300,
     justifyContent: 'center',
@@ -180,5 +194,11 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+  },
+  colorButton: {
+    width: 30,
+    height: 30,
+    margin: 5,
+    borderRadius: 50,
   },
 });
