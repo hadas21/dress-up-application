@@ -39,16 +39,18 @@ export default DisplayItems = props => {
   const renderSizes = sizes => {
     const itemSizes = (
       <>
-        <Text>Select a size:</Text>
+        <Text>Available Sizes: </Text>
+
         {sizes.map(size => (
-          <Button
+          <TouchableOpacity
             key={size}
-            title={size.toString()}
+            style={styles.colorButton}
             onPress={() => {
               setSelectedItem({...selectedItem, size: size});
               setModalVisible(true);
-            }}
-          />
+            }}>
+            <Text style={styles.boldText}>{size.toString()}</Text>
+          </TouchableOpacity>
         ))}
       </>
     );
@@ -113,7 +115,6 @@ export default DisplayItems = props => {
                 <Text>{item.brand}</Text>
               </View>
 
-              <Text>Select a color:</Text>
               <View style={styles.buttonWrapper}>
                 {renderColors(item.colors, item.id, item.type, item.name)}
               </View>
@@ -171,7 +172,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonWrapper: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
   },
   button: {
     borderRadius: 20,
@@ -199,5 +201,9 @@ const styles = StyleSheet.create({
     height: 30,
     margin: 5,
     borderRadius: 50,
+    justifyContent: 'center',
+  },
+  boldText: {
+    fontWeight: 'bold',
   },
 });
