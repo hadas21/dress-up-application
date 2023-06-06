@@ -1,6 +1,6 @@
 # dress-up-application
 ---
-Feel free to mix and match your own outfits in my DressUp app
+I tried creating a react native application to understand how it works. You can mix and match your own outfits in my DressUp app
 Enjoy!
 ## Get Started
 1. Fork and clone repository.
